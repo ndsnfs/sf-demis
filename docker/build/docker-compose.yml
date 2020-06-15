@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: ${COMPOSE_PROJECT_NAME}/nginx
+    build: nginx
+
+  php-fpm:
+    image: ${COMPOSE_PROJECT_NAME}/php-fpm
+    build: php-fpm
