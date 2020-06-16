@@ -53,6 +53,7 @@
 
 <script>
 
+
     import axios from "axios";
 
     export default {
@@ -73,11 +74,24 @@
                     axios
                         .delete("/v1/todo/" + id)
                         .then(response => {
-                            alert('Removed')
+                            context.$notify({
+                                group: 'foo',
+                                type: 'success',
+                                text: 'Запись успешно удалена'
+                            });
                             context.load()
                         })
                         .catch(e => {
-                            alert('Fatal')
+                            if (e.response.status == 404) {
+                                context.$notify({
+                                    group: 'foo',
+                                    type: 'warn',
+                                    text: 'Записи не существует'
+                                });
+                                context.load();
+                                return;
+                            }
+                            alert('Что-то пшло не так!')
                         });
                 }
             },

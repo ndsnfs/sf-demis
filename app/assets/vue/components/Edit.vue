@@ -56,7 +56,11 @@
                         "headers": {"Content-Type": "application/json"}
                     })
                     .then(response => {
-                        alert('Success updated!')
+                        this.$notify({
+                            group: 'foo',
+                            type: 'success',
+                            text: 'Запись успешно обновлена'
+                        });
                         this.$router.push('/')
                     })
                     .catch(e => {
